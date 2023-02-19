@@ -37,7 +37,7 @@ async def check_time(price):
 
 async def check_out(price):
 	alert = ((float(state_price) - float(price))/float(state_price))*100
-	if (alert >= 1) or float(state_price)*0.99 >= float(price):
+	if (alert >= 1) or float(alert <= -1):
 		print(f'IT\'S ALLERT!!!======================= Price changed at {alert}% =======================')
 	return
 
