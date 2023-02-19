@@ -51,10 +51,12 @@ async def check_price_live(price, btc):
 	if state_price is None:
 		state_price = price
 	correlation = 0.8138748188334043 #await check_correlation() - было занесено 100 значений
+	# sev = 1 - correlation
 	# if correlation is None:
 	# 	correlation = 0
-	real_eth = (float(correlation) * float(price))
-	print(f"{X_line*10}\nBTC: {btc}{W_line}ETH: {price}{W_line}CORRELATION: {correlation}{W_line}Real ETH: {real_eth}\n{X_line*10}")
+	real_eth = (float(state_price)+(float(price)-float(state_price))*((1-float(correlation))))
+	print(f"{X_line*10}\nBTC: {btc}{W_line}ETH: {price}{W_line}",
+		  f"CORRELATION: {correlation}{W_line}Real ETH: {real_eth}{W_line}Fixed: {state_price}\n{X_line*10}")
 	await check_time(price=price)
 
 
